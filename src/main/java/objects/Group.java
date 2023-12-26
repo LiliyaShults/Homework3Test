@@ -19,11 +19,6 @@ public class Group {
                 '}';
     }
 
-   /* public Group(long id, long id_curator, String name) {
-        this.id = id;
-        this.id_curator = id_curator;
-        this.name = name;
-    }*/
 
     public long getId() {
         return id;

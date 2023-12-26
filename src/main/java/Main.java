@@ -20,9 +20,6 @@ public class Main {
             curators = curatorTables.selectAll();
         }
 
-        for (Curator tmp : curators) {
-            System.out.println(tmp.toString());
-        }
 
         GroupTables groupTables = new GroupTables();
         ArrayList<Group> groups = groupTables.selectAll();
@@ -31,10 +28,6 @@ public class Main {
             groupTables.insert(new Group(2, "K-3212", 2));
             groupTables.insert(new Group(3, "K-3213", 3));
             groups = groupTables.selectAll();
-        }
-
-        for (Group tmp : groups) {
-            System.out.println(tmp.toString());
         }
 
         StudentTables studentTables = new StudentTables();
@@ -58,40 +51,41 @@ public class Main {
             students = studentTables.selectAll();
         }
 
-        for (Student tmp : students) {
-            System.out.println(tmp.toString());
-        }
-        System.out.println();
-        students = studentTables.selectBySex("женщина");
-        for (Student tmp : students) {
-            System.out.println(tmp.toString());
-        }
-        System.out.println();
-        students = studentTables.selectBySex("мужчина");
-        for (Student tmp : students) {
-            System.out.println(tmp.toString());
-        }
-        System.out.println();
-        Integer count = studentTables.selectCount("мужчина");
-        System.out.println(count);
-//        for (Student tmp:students) {
-//            System.out.println(tmp.toString());
-//        }
 
         studentTables.selectStudensInfo();
 
         System.out.println();
 
-        curators.get(1).setFio("Силянин Синевич Синий");
+        Integer count = studentTables.selectCount("мужчина");
+        System.out.println(count);
+
+        System.out.println();
+
+
+        students = studentTables.selectBySex("женщина");
+        for (Student tmp : students) {
+            System.out.println(tmp.toString());
+        }
+
+        System.out.println();
+
+        curators.get(1).setId(4);
         curatorTables.update(curators.get(1));
 
         for (Curator tmp : curators) {
             System.out.println(tmp.toString());
         }
+        System.out.println();
 
+        groupTables.selectGroupInfo();
+
+        System.out.println();
+
+        //Имена групп К-3211,К-3212, К-3213.
+        studentTables.selectStudentsInGroup("K-3212");
+
+
+        }
 
     }
-
-}
-
 

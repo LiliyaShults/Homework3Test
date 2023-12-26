@@ -17,11 +17,6 @@ public class Curator {
                 '}';
     }
 
-   /* public Curator(String fio, int id) {
-        this.fio = fio;
-        this.id = id;
-    }*/
-
     public String getFio() {
         return fio;
     }
@@ -37,6 +32,5 @@ public class Curator {
     public void setId(long id) {
         this.id = id;
     }
-
 
 }

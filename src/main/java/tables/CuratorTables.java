@@ -23,12 +23,6 @@ public class CuratorTables extends AbsTables {
         return selectByQuery(sqlQuery);
     }
 
-    public ArrayList<Curator> selectByFio(String fio){
-        String sqlQuery = String.format("SELECT * FROM %s WHERE fio = '%s'",
-                tableName, fio);
-        return selectByQuery(sqlQuery);
-    }
-
     private ArrayList<Curator> selectByQuery(String sqlQuery){
         ArrayList<Curator> curators = new ArrayList<>();
         db = new MySQLConnector();
@@ -61,20 +55,13 @@ public class CuratorTables extends AbsTables {
     public void update(Curator curators){
         db = new MySQLConnector();
         String sqlQuery = String.format("UPDATE %s SET " +
-                        "fio='%s' WHERE id = %d ",
+                        "id='%d' WHERE id = %d ",
                 tableName,
-                curators.getFio(),
+                curators.getId(),
                 curators.getId());
         db.executeRequest(sqlQuery);
         db.close();
     }
 
-    public void delete(int id){
-        db = new MySQLConnector();
-        String sqlQuery = String.format("DELETE FROM %s WHERE id='%d'",
-                "curator", id);
-        db.executeRequest(sqlQuery);
-        db.close();
-    }
 
 }

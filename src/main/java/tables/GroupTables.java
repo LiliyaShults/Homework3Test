@@ -23,12 +23,6 @@ public class GroupTables extends AbsTables {
       return selectByQuery(sqlQuery);
    }
 
-   public ArrayList<Group> selectByType(String type){
-      String sqlQuery = String.format("SELECT * FROM %s WHERE type = '%s'",
-              tableName, type);
-      return selectByQuery(sqlQuery);
-   }
-
    private ArrayList<Group> selectByQuery(String sqlQuery){
       ArrayList<Group> groups = new ArrayList<>();
       db = new MySQLConnector();
@@ -59,25 +53,19 @@ public class GroupTables extends AbsTables {
       db.close();
    }
 
-   public void update(Group group){
+   public void selectGroupInfo () throws SQLException {
+      String sqlQuery = String.format("SELECT g.name, c.fio  FROM `group` g join curator c on g.id_curator = c.id");
       db = new MySQLConnector();
-      String sqlQuery = String.format("UPDATE %s SET " +
-                      "id='%d', name='%s', WHERE id_curator = %d ",
-              tableName,
-              group.getId(),
-              group.getName(),
-              group.getId_curator());
-      db.executeRequest(sqlQuery);
-      db.close();
-   }
-
-   public void delete(long id){
-      db = new MySQLConnector();
-      String sqlQuery = String.format("DELETE FROM %s WHERE id='%d'",
-              tableName, id
-      );
-      db.executeRequest(sqlQuery);
-      db.close();
+      ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+      try {
+         while (rs.next()) {
+            System.out.println(rs.getString(1) + " " + rs.getString(2));
+         }
+      } catch (SQLException ex) {
+         ex.printStackTrace();
+      } finally {
+         db.close();
+      }
    }
 
 }
