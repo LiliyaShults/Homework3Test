@@ -1,6 +1,5 @@
 package tables;
 
-import db.IDBConnector;
 import db.MySQLConnector;
 
 import java.util.Map;
@@ -9,11 +8,10 @@ import java.util.stream.Collectors;
 public abstract class AbsTables {
     public String tableName;
     public Map<String, String> columns;
-    IDBConnector db;
+    MySQLConnector db;
 
     public AbsTables(String tableName) {
         this.tableName = tableName;
-        this.columns = columns;
     }
 
     public void create() {
@@ -25,7 +23,7 @@ public abstract class AbsTables {
     }
 
     private String convertMapColumnsToString() {
-        final String result = columns.entrySet().stream()
+        String result = columns.entrySet().stream()
                 .map((Map.Entry entry) -> String.format("%s %s", entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining(", "));
         return result;

@@ -22,13 +22,6 @@ public class Student {
                 '}';
     }
 
-    /*public Student(String fio, String sex, long id, long id_group) {
-        this.fio = fio;
-        this.sex = sex;
-        this.id = id;
-        this.id_group = id_group;
-    }*/
-
     public String getFio() {
         return fio;
     }
